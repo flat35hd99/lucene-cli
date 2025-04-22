@@ -20,7 +20,7 @@ dependencies {
     testImplementation(libs.junit)
 
     // Of course, we use lucene
-    implementation("org.apache.lucene:lucene-core:10.2.0")
+    implementation(libs.lucene)
 
     // This dependency is used by the application.
     implementation(libs.guava)
