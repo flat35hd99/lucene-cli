@@ -19,6 +19,9 @@ dependencies {
     // Use JUnit test framework.
     testImplementation(libs.junit)
 
+    // Of course, we use lucene
+    implementation("org.apache.lucene:lucene-core:10.2.0")
+
     // This dependency is used by the application.
     implementation(libs.guava)
 }
