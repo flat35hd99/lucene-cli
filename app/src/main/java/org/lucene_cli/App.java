@@ -3,12 +3,39 @@
  */
 package org.lucene_cli;
 
-public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+import org.lucene_cli.config.ArgParser;
 
+public class App {
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+
+        try {
+            ArgParser parser = new ArgParser(args);
+            String command = parser.getCommand();
+            if (command == null) {
+                System.out.println("No command specified. Use 'index' or 'query'.");
+                return;
+            }
+
+            switch (command) {
+                case "index":
+                    // Call index functionality
+                    System.out.println("Indexing...");
+                    String dir = parser.getFlag("dir");
+                    if (dir != null) {
+                        System.out.println(String.format("Indexing directory: %s", dir));
+                    } else {
+                        System.out.println("No directory specified for indexing.");
+                    }
+                    break;
+                case "query":
+                    // Call query functionality
+                    System.out.println("Querying...");
+                    break;
+                default:
+                    System.out.println(String.format("Unknown command: %s.", command));
+            }
+        } catch (Exception e) {
+            System.err.println(String.format("Error: %s.", e.getMessage()));
+        }
     }
 }
